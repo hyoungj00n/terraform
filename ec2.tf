@@ -1,3 +1,4 @@
+/*
 resource "aws_instance" "terraform" {
   ami           = "ami-0f3a440bbcff3d043" 
   instance_type = "t2.micro"
@@ -16,6 +17,13 @@ resource "aws_instance" "terraform" {
   } 
 }
 
+
+output "public_ip" {
+ value = aws_instance.terraform.public_ip
+ description = "public IP"
+}
+*/
+
 resource  "aws_security_group" "instance"  {
   name  =  "terraform-instance" 
   
@@ -25,9 +33,4 @@ resource  "aws_security_group" "instance"  {
     protocol     =  "tcp"
     cidr_blocks  =  [ "0.0.0.0/0" ] 
   }
-}
-
-output "public_ip" {
- value = aws_instance.terraform.public_ip
- description = "The public IP address of the web server"
 }
